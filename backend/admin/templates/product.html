@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container marketing">
+
+  <hr class="featurette-divider">
+  {% for product in products %}
+
+  <div class="row featurette">
+    <div class="col-md-7 {% if product.id|divisibleby:"2" %} order-md-2 {% endif %}">
+      <h2 class="featurette-heading">{{ product.title }}</h2>
+      <p class="lead">{{ product.description}}</p>
+      <h2 class="price">{{ product.price}} {{ product.currency.title}}</h2>
+      <p><a class="btn btn-lg btn-primary" href="#">Купити</a></p>
+    </div>
+    <div class="col-md-5">
+      {% if product.img %}
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" 
+          src="{{ product.img }}"></img>
+      {% else %}
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+      {% endif %} 
+
+    </div>
+</div>
+
+<hr class="featurette-divider">
+  {% endfor %}
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link {% if disable_previos  %} disabled {% endif %}" href="?page={{page_number|add:-1}}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {% for i in pages_count|get_range %}
+      <li class="page-item {% if i == page_number %} active {% endif %}"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+      {% endfor %}
+
+      <li class="page-item">
+        <a class="page-link {% if disable_next  %} disabled {% endif %}" href="?page={{page_number|add:1}}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  {{page_number}}
+  {{pages_count}}
+
+  <!-- /END THE FEATURETTES -->
+  <hr class="=featurette-divider">
+  <div class="row">
+    <a class="btn btn-outline-success justify-content-end" href="{% url 'create_product' %}" role="button">Create</a>
+    <a class="btn btn-outline-primary" href="{% url 'product_update' product.id %}" role="button">Update</a>
+    <a class="btn btn-outline-danger" href="{% url 'product_delete' product.id %}" role="button">Delete</a>
+  </div>
+
+
+</div><!-- /.container -->
+
+{% endblock %}
+
+  

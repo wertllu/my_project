@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <main>
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="https://media.istockphoto.com/id/1267470141/vector/light-bulb-logo-vector-design-template.jpg?s=612x612&w=0&k=20&c=OHNajPbX-fVRx7edNXwsVmxaf2okeR2FMh7dYIVSz80=" alt="" width="100" height="100">
+        <h2>Profile</h2>
+      </div>
+  
+      <div class="row justify-content-md-center">
+        
+        <!-- <form method="POST" class="post-form">
+          {% csrf_token %}
+          {{form.as_p}}
+          <button type="submit" class="save btn btn-secondary">Save</button> 
+
+        </form> -->
+
+        <div class="col-md-6 col-sm-12">
+          <h4 class="mb-3"> Данні користувача </h4>
+          <form method="POST" class="needs-validation" novalidate="">
+            {% csrf_token %}
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">First name</label>
+                <input type="text" class="form-control" name="first_name" id="id_first_name" placeholder="" value="{{ form.data.first_name }}" required="">
+
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+  
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input type="text" class="form-control" name="last_name" id="id_last_name" placeholder="" value="{{ form.data.last_name }}" required="">
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+  
+              <div class="col-12">
+                <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
+                <input type="email" class="form-control" name="email" maxlength="254" id="id_email" value="{{ form.data.email }}" placeholder="you@example.com">
+
+                <!-- 
+                 <input type="email" class="form-control" id="email" >
+                 <input type="email" class="form-control" name="email" id="id_email" > 
+               -->
+
+                <div class="invalid-feedback">
+                  Please enter a valid email address for shipping updates.
+                </div>
+              </div>
+  
+              <div class="col-12">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" name="username" id="id_username" value="{{ form.data.username }}" placeholder="username" required="">
+                <div class="invalid-feedback">
+                  Please enter your username.
+                </div>
+              </div>
+
+
+              <div class="col-12">
+                <label for="password" class="form-label">Password Old</label>
+                <input type="password" class="form-control" name="password_new" id="id_password_new" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Please enter your password.
+                </div>
+              </div>
+  
+              <div class="col-12">
+                <label for="password" class="form-label">Password New</label>
+                <input type="password" class="form-control" name="password_old" id="id_password_old" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Please enter your password.
+                </div>
+              </div>
+  
+              
+  
+              <div class="col-md-5">
+                <label for="currency" class="form-label">currency</label>
+                <select class="form-select" id="currency" required="">
+                  <option value="">Choose...</option>
+                  <option>USD</option>
+                  <option>грн</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select currency.
+                </div>
+              </div>
+  
+              <div class="col-md-4">
+                <label for="state" class="form-label">State</label>
+                <select class="form-select" id="state" required="">
+                  <option value="">Choose...</option>
+                  <option>California</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
+              </div>
+  
+            </div>
+  
+            <hr class="my-4">
+  
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="same-address">
+              <label class="form-check-label" for="same-address">Send email notification about new information</label>
+            </div>
+  
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="save-info">
+              <label class="form-check-label" for="save-info">Save this information for next time</label>
+            </div>
+            
+            <hr class="my-4">
+
+            <h5 class="mb-3"> What are you interested in? </h5>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="save-info">
+              <label class="form-check-label" for="save-info">Devices</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="save-info">
+              <label class="form-check-label" for="save-info">Clothes</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="save-info">
+              <label class="form-check-label" for="save-info">For school</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="save-info">
+              <label class="form-check-label" for="save-info">All for art</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="save-info">
+              <label class="form-check-label" for="save-info">food and drinks</label>
+            </div>
+  
+            
+  
+            <!-- <h4 class="mb-3">Payment</h4>
+  
+            <div class="my-3">
+              <div class="form-check">
+                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required="">
+                <label class="form-check-label" for="credit">Credit card</label>
+              </div>
+              <div class="form-check">
+                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required="">
+                <label class="form-check-label" for="debit">Debit card</label>
+              </div>
+              <div class="form-check">
+                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required="">
+                <label class="form-check-label" for="paypal">PayPal</label>
+              </div>
+            </div> -->
+  
+            <!-- <div class="row gy-3">
+              <div class="col-md-6">
+                <label for="cc-name" class="form-label">Name on card</label>
+                <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+                <small class="text-muted">Full name as displayed on card</small>
+                <div class="invalid-feedback">
+                  Name on card is required
+                </div>
+              </div>
+  
+              <div class="col-md-6">
+                <label for="cc-number" class="form-label">Credit card number</label>
+                <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Credit card number is required
+                </div>
+              </div>
+  
+              <div class="col-md-3">
+                <label for="cc-expiration" class="form-label">Expiration</label>
+                <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Expiration date required
+                </div>
+              </div>
+  
+              <div class="col-md-3">
+                <label for="cc-cvv" class="form-label">CVV</label>
+                <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Security code required
+                </div>
+              </div>
+            </div> -->
+  
+            <hr class="my-4">
+  
+            <button class="w-100 btn btn-primary btn-lg" type="submit">Profile</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  
+  </div>
+
+    </main>
+</div>
+    {% endblock %}
